@@ -1,9 +1,10 @@
 import React from 'react';
 
-const NavBar = () => {
+const NavBar = (props) => {
+    let {title} = props;
         return (
             <div>
-                <h1>Client pannel</h1>
+                <h1>{title}</h1>
             </div>
         );
 }
