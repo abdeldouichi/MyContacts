@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './contact.css';
 class Contact extends Component {
     render() {
-        let {name, tel, email} = this.props;
+        let {name, tel, email} = this.props.data;
         let colors= ["6c757d","007bff","28a745","ffc107"];
         return (
 
