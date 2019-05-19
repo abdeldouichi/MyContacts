@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import PropTypes from 'prop-types'
 class Contact extends Component {
     render() {
         let {name, tel, email} = this.props;
@@ -21,6 +21,12 @@ Contact.defaultProps = {
     tel: "000000000",
 }
 
-
+/*System  validation  proprieties*/
+Contact.propTypes = {
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    tel: PropTypes.string
+}
 
 export default Contact;
+
