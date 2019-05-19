@@ -7,6 +7,9 @@ const NavBar = (props) => {
                 <h1>{title}</h1>
             </div>
         );
+};
+NavBar.defaultProps = {
+    title : "default title"
 }
 
 export default NavBar;
