@@ -1,0 +1,12 @@
+.b-icon{
+    cursor: pointer;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+}
+.b-icon:hover {
+    color: #606477 !important;
+}
+.card-title{
+    text-transform: capitalize;
+    color: #606477;
+}

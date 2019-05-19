@@ -8,7 +8,7 @@ function App() {
         <div className="App">
             <NavBar title="Contacts List"/>
             <div className="container">
-                <Contacts />
+                <Contacts info="liste de contact static"/>
             </div>
 
 
