@@ -22,10 +22,12 @@ class Contact extends Component {
             showContactToggle: !this.state.showContactToggle,
         })
     };
-
+    onDeleteAction = () =>{
+        this.props.deleteContactFromChild();
+    };
     render() {
         let {data} = this.props;
-        let { name, tel, email} = data;
+        let {name, tel, email} = data;
 
         let colors = ["00A9D8", "0D9EDF", "259B9A", "292930", "3EB650", "FCC133", "E12B38", "7F8688", "929D9E", "F3E367", "18181E", "DEC79B", "F7F7F7", "7DA2A9", "4BFFA5", "040F3D", "C6C4C5", "34421E", "F1F1EF", "C19434", "FB8122", "1D2228", "E1E2E2", "D48166", "373A36", "", "E6E2DD", "151617", "090A0A", "151516", "000000", "181818", "2CCCC3", "FACD3D", "5626C4", "E60576", "32064A", "E56B1F", "FCD02C", "E42C6A"];
         return (
@@ -50,7 +52,8 @@ class Contact extends Component {
                                                          onClick={this.showContact.bind(this, name)}/>
                                     )
                             }
-                            <DeleteIcon className="b-icon text-danger"/>
+
+                            <DeleteIcon className="b-icon text-danger" onClick={this.onDeleteAction} />
                         </div>
                     </div>
                 </div>
@@ -82,8 +85,8 @@ Contact.defaultProps = {
 
 /*System  validation  proprieties*/
 Contact.propTypes = {
-    id: PropTypes.number,
-    data: PropTypes.object
+    data: PropTypes.object.isRequired,
+    deleteContactFromChild: PropTypes.func.isRequired
 };
 
 export default Contact;
