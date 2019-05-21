@@ -5,13 +5,6 @@ import {Consumer} from '../Context';
 class Contacts extends Component {
 
 
-    deleteContact(id){
-        // const newContacts = contacts.filter((contact)=> contact.id !== id);
-        // this.setState({
-        //     contacts: newContacts
-        // });
-    }
-
     render() {
         const {info} = this.props;
         return (
@@ -25,7 +18,6 @@ class Contacts extends Component {
                                     <Contact
                                         data={contact}
                                         key={contact.id}
-                                        deleteContactFromChild={this.deleteContact.bind(this,contact.id)}
                                     />
                                 )
                             )}
@@ -34,9 +26,6 @@ class Contacts extends Component {
                 )}
             </Consumer>
         )
-
-
-
     }
 }
 

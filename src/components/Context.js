@@ -14,8 +14,6 @@ const reducer = (state, action) => {
 };
 export class Provider extends Component {
 
-
-
     state = {
         contacts: [
             {id: 1, name: "abdel douichi", email: "abdel.douichi@gmail.com", tel: "0669541001"},

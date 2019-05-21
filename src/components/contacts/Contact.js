@@ -24,7 +24,6 @@ class Contact extends Component {
     };
 
     onDeleteAction = (id, dispatch) => {
-        this.props.deleteContactFromChild();
         dispatch({
             type: 'DELETE_CONTACT',
             payload: id
