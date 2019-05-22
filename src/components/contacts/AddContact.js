@@ -1,85 +1,101 @@
 import React, {Component} from 'react';
 import {Consumer} from '../Context';
-import TextInputGroup from '../helpers/TextInputGroup'
+import TextInputGroup from '../helpers/TextInputGroup';
 
 class AddContact extends Component {
     state = {
         name: '',
         email: '',
-        phone: ''
+        phone: '',
+        errors: {},
     };
     onChangeInput = e => this.setState({[e.target.name]: e.target.value});
     submit = (dispatch, size, e) => {
         e.preventDefault();
+
+        const {name, email, phone} = this.state;
+        if (name == "") {
+            this.setState({errors: {name: "the name is Required !"}})
+            return;
+        }
+        if (phone == "") {
+            this.setState({errors: {phone: "the phone is Required !"}})
+            return;
+        }
+        if (email == "") {
+            this.setState({errors: {email: "the email is Required !"}})
+            return;
+        }
         dispatch({
             type: 'ADD_CONTACT',
             payload: {
                 id: size + 1,
-                name: this.state.name,
-                email: this.state.email,
-                tel: this.state.phone,
+                name,
+                email,
+                phone,
             }
         });
         this.setState({
-            name: '',
-            email: '',
-            phone: ''
+            name:'',
+            email:'',
+            phone:'',
+            errors:{},
+        })
+    };
 
-        });
-    }
-        render()
-        {
-            const {name, email, phone} = this.state;
+    render() {
+        const {name, email, phone, errors} = this.state;
 
-            return (
-                <Consumer>
-                    {
-                        value => {
-                            const {dispatch} = value;
-                            return (
-                                <div>
-                                    <form onSubmit={this.submit.bind(this, dispatch, value.contacts.length)}>
-                                        <div className="card">
+        return (
+            <Consumer>
+                {
+                    value => {
+                        const {dispatch} = value;
+                        return (
+                            <div>
+                                <form onSubmit={this.submit.bind(this, dispatch, value.contacts.length)}>
+                                    <div className="card">
+                                        <div className="card-body">
+                                            <h4 className="card-title">Add Contact</h4>
                                             <div className="card-body">
-                                                <h4 className="card-title">Add Contact</h4>
-                                                <div className="card-body">
-                                                    <TextInputGroup
-                                                        label="Name"
-                                                        name="name"
-                                                        value={name}
-                                                        onChange={this.onChangeInput}
-                                                        type="text"
-                                                    />
-                                                    <TextInputGroup
-                                                        label="Email"
-                                                        name="email"
-                                                        value={email}
-                                                        onChange={this.onChangeInput}
-                                                        type="email"
-                                                    />
-                                                    <TextInputGroup
-                                                        label="Phone"
-                                                        name="phone"
-                                                        value={phone}
-                                                        onChange={this.onChangeInput}
-                                                        type="text"
-                                                    />
+                                                <TextInputGroup
+                                                    label="Name"
+                                                    name="name"
+                                                    value={name}
+                                                    onChange={this.onChangeInput}
+                                                    type="text"
+                                                    error={errors.name}
+                                                />
+                                                <TextInputGroup
+                                                    label="Email"
+                                                    name="email"
+                                                    value={email}
+                                                    onChange={this.onChangeInput}
+                                                    type="email"
+                                                    error={errors.email}
+                                                />
+                                                <TextInputGroup
+                                                    label="Phone"
+                                                    name="phone"
+                                                    value={phone}
+                                                    onChange={this.onChangeInput}
+                                                    type="text"
+                                                    error={errors.phone}
+                                                />
 
-                                                    <button className="btn btn-primary btn-block">Add new Contact
-                                                    </button>
-                                                </div>
+                                                <button className="btn btn-primary btn-block">Add new Contact
+                                                </button>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
-                            )
-                        }
+                                    </div>
+                                </form>
+                            </div>
+                        )
                     }
-                </Consumer>
-            );
-        }
+                }
+            </Consumer>
+        );
     }
+}
 
-    export
-    default
-    AddContact;
+export default AddContact;
