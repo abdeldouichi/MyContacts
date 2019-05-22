@@ -1,10 +1,12 @@
 import React from 'react';
 
-function About() {
+function About(props) {
 
     return (
         <div className="text-left">
             <h2>About Page</h2>
+            <h5>{props.match.params.id}</h5>
+            <h5>{props.match.params.name}</h5>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, aperiam, hic, amet delectus commodi
                 pariatur ex accusantium tenetur eum qui aspernatur earum expedita repudiandae laudantium veniam maiores
