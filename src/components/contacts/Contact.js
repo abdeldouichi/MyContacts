@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Consumer} from '../context';
 import './contact.css';
+import axios from 'axios'
 /**
  * Icones material-ui
  */
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import DeleteIcon from '@material-ui/icons/Delete';
-import axios from 'axios'
 
 class Contact extends Component {
     state = {
