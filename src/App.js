@@ -2,10 +2,11 @@ import React from 'react';
 import './App.css';
 import Contacts from './components/contacts/Contacts';
 import NavBar from './components/shared/navbar/NavBar';
-import {Provider} from './components/Context';
+import {Provider} from './components/context';
 import AddContact from './components/contacts/AddContact';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import About from "./components/pages/About";
+import PageNotFound from "./components/pages/PageNotFound";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                              <Route exact path="/"  component={Contacts} />
                              <Route exact path="/contact/add"  component={AddContact} />
                              <Route exact path="/about"  component={About} />
+                             <Route component={PageNotFound} />
                         </Switch>
 
                     </div>

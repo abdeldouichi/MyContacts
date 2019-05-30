@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Consumer} from '../Context';
+import {Consumer} from '../context';
 import './contact.css';
 /**
  * Icones material-ui
@@ -8,7 +8,7 @@ import './contact.css';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
 import DeleteIcon from '@material-ui/icons/Delete';
-
+import axios from 'axios'
 
 class Contact extends Component {
     state = {
@@ -23,10 +23,12 @@ class Contact extends Component {
     };
 
     onDeleteAction = (id, dispatch) => {
-        dispatch({
-            type: 'DELETE_CONTACT',
-            payload: id
-        })
+        axios.delete('https://jsonplaceholder.typicode.com/users/' + id)
+            .then(res => dispatch({
+                type: 'DELETE_CONTACT',
+                payload: id
+            }))
+            .catch(err => console.log(err));
     };
 
     render() {
@@ -43,8 +45,8 @@ class Contact extends Component {
                             <div className="row mb-3">
                                 <img
                                     className="col-4 m-auto rounded-circle"
-                                    src={"https://ui-avatars.com/api/?name=" + name.toLowerCase().split(" ").join("+") + "&color=" + colors[Math.floor(Math.random() * (colors.length-1) )]}
-                                    alt={name.toLowerCase()} />
+                                    src={"https://ui-avatars.com/api/?name=" + name.toLowerCase().split(" ").join("+") + "&color=" + colors[Math.floor(Math.random() * (colors.length - 1))]}
+                                    alt={name.toLowerCase()}/>
 
                                 <div className="col-7 my-auto mr-0 ml-auto">
                                     <div className="col-7 my-auto mr-0 ml-auto">
@@ -75,7 +77,8 @@ class Contact extends Component {
                                                    href={"mailto:" + email}>{email}</a>
 
                                                 <div className="card-text col-4 text-left">Tel:</div>
-                                                <a className="card-link col-8 text-left p-0" href={"phone:" + phone}>{phone}</a>
+                                                <a className="card-link col-8 text-left p-0"
+                                                   href={"phone:" + phone}>{phone}</a>
                                             </div>
                                         )
                                         : null
@@ -96,8 +99,7 @@ Contact.defaultProps = {
 
 /*System  validation  proprieties*/
 Contact.propTypes = {
-    data: PropTypes.object.isRequired,
-    deleteContactFromChild: PropTypes.func.isRequired
+    data: PropTypes.object.isRequired
 };
 
 export default Contact;

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Consumer} from '../Context';
+import {Consumer} from '../context';
 import TextInputGroup from '../helpers/TextInputGroup';
 
 class AddContact extends Component {
@@ -14,15 +14,16 @@ class AddContact extends Component {
         e.preventDefault();
 
         const {name, email, phone} = this.state;
-        if (name == "") {
+
+        if (name === "") {
             this.setState({errors: {name: "the name is Required !"}})
             return;
         }
-        if (phone == "") {
+        if (phone === "") {
             this.setState({errors: {phone: "the phone is Required !"}})
             return;
         }
-        if (email == "") {
+        if (email === "") {
             this.setState({errors: {email: "the email is Required !"}})
             return;
         }

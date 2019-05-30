@@ -1,5 +1,11 @@
 import React from 'react';
 import './navbar.css';
+import {Link} from "react-router-dom";
+/**
+ * Icones material-ui
+ */
+import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
+
 const NavBar = (props) => {
     let {title} = props;
         return (
@@ -9,18 +15,21 @@ const NavBar = (props) => {
                         aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <a className="navbar-brand" >MyContacts</a>
+                <Link className="navbar-brand" to="/">MyContacts</Link>
 
                 <div className="collapse navbar-collapse" id="navbarToggler">
                     <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         <li className="nav-item active">
-                            <a className="nav-link" >{title} <span className="sr-only">(current)</span></a>
+                            <Link className="nav-link" to="/" >{title} <span className="sr-only">(current)</span></Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" >MyProfile</a>
+                            <Link className="nav-link" to="/">MyProfile</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link disabled" >About us</a>
+                            <Link className="nav-link" to="/about">About us</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/contact/add">Add contact <AddCircleOutline /></Link>
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
@@ -36,4 +45,4 @@ NavBar.defaultProps = {
     title : "default title"
 }
 
-export default NavBar;
+export default NavBar
