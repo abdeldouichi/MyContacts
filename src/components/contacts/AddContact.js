@@ -11,7 +11,7 @@ class AddContact extends Component {
         errors: {},
     };
     onChangeInput = e => this.setState({[e.target.name]: e.target.value});
-    submit = (dispatch, size, e) => {
+    submit = async (dispatch, size, e) => {
         e.preventDefault();
 
         const {name, email, phone} = this.state;
@@ -33,18 +33,22 @@ class AddContact extends Component {
             email,
             phone,
         };
-        axios.post('https://jsonplaceholder.typicode.com/users', newContact)
-            .then(res => dispatch({
+        try {
+            const res = await axios.post('https://jsonplaceholder.typicode.com/users', newContact);
+            dispatch({
                 type: 'ADD_CONTACT',
                 payload: res.data
-            }));
+            });
 
-        this.setState({
-            name: '',
-            email: '',
-            phone: '',
-            errors: {},
-        })
+            this.setState({
+                name: '',
+                email: '',
+                phone: '',
+                errors: {},
+            })
+        }catch (e) {
+            console.log(e);
+        }
     };
 
     render() {

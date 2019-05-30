@@ -22,13 +22,16 @@ class Contact extends Component {
         })
     };
 
-    onDeleteAction = (id, dispatch) => {
-        axios.delete('https://jsonplaceholder.typicode.com/users/' + id)
-            .then(res => dispatch({
-                type: 'DELETE_CONTACT',
-                payload: id
-            }))
-            .catch(err => console.log(err));
+     onDeleteAction = async(id, dispatch) => {
+     try {
+         const res = await axios.delete('https://jsonplaceholder.typicode.com/users/' + id);
+         dispatch({
+             type: 'DELETE_CONTACT',
+             payload: id,
+         })
+     } catch (e) {
+         console.log(e)
+     }
     };
 
     render() {
