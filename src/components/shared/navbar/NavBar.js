@@ -29,7 +29,7 @@ const NavBar = (props) => {
                             <Link className="nav-link" to="/about">About us</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/contact/add">Add contact <AddCircleOutline /></Link>
+                            <a className="nav-link" href="/contact">Add contact <AddCircleOutline /></a>
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">

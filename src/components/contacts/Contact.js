@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import {Consumer} from '../context';
 import './contact.css';
 import axios from 'axios'
+import {Link} from "react-router-dom";
+
 /**
  * Icones material-ui
  */
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUp from '@material-ui/icons/KeyboardArrowUp';
-import DeleteIcon from '@material-ui/icons/Delete';
+import Delete from '@material-ui/icons/Delete';
+import Edit from '@material-ui/icons/Edit';
 
 class Contact extends Component {
     state = {
@@ -24,7 +27,7 @@ class Contact extends Component {
 
      onDeleteAction = async(id, dispatch) => {
      try {
-         const res = await axios.delete('https://jsonplaceholder.typicode.com/users/' + id);
+          await axios.delete('https://jsonplaceholder.typicode.com/users/' + id);
          dispatch({
              type: 'DELETE_CONTACT',
              payload: id,
@@ -65,8 +68,9 @@ class Contact extends Component {
                                                 )
                                         }
 
-                                        <DeleteIcon className="b-icon text-danger"
-                                                    onClick={this.onDeleteAction.bind(this, id, dispatch)}/>
+                                        <Delete className="b-icon text-danger"
+                                                onClick={this.onDeleteAction.bind(this, id, dispatch)}/>
+                                        <Link className="text-dark" to={"/contact/"+id}><Edit /></Link>
                                     </div>
                                 </div>
                             </div>
