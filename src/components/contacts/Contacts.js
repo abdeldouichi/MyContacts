@@ -1,33 +1,15 @@
 import React, {Component} from 'react';
 import Contact from './Contact';
+import {connect} from "react-redux";
 
 class Contacts extends Component {
-    state = {
-        contacts: [
-            {
-                id: 1,
-                name: 'Mohamed IDBRAHIM',
-                email: 'idbrahimdev@gmail.com',
-                phone: '0650303315'
-            },
-            {
-                id: 2,
-                name: 'Basma IDBRAHIM',
-                email: 'basma@gmail.com',
-                phone: '0650303316'
-            },
-            {
-                id: 3,
-                name: 'Walid IDBRAHIM',
-                email: 'walid@gmail.com',
-                phone: '0650303317'
-            }
-        ]
-    };
-
+    componentDidMount()  {
+        // eslint-disable-next-line no-unused-expressions
+        // eslint-disable-next-line no-unused-expressions
+        this.props.getContacts();
+    }
     render() {
-        const {info} = this.props;
-        const {contacts} = this.state;
+        const {info, contacts} = this.props;
         return (
 
             <div className={"card-goup"}>
@@ -46,5 +28,22 @@ class Contacts extends Component {
         )
     }
 }
-
-export default Contacts;
+const mapStateToProps = (state) =>
+{
+    return {
+        contacts: state.myContacts.contacts
+    }
+};
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getContacts: () => {
+            dispatch(
+                {
+                    type:'GET_CONTACTS',
+                    action:'',
+                }
+            )
+        }
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Contacts);
