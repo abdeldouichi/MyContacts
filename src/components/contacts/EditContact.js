@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import TextInputGroup from '../helpers/TextInputGroup';
-
+import {connect} from "react-redux";
+import {addContact} from '../../actions/contactActions';
+import uuid from 'uuid'
 class EditContact extends Component {
     state = {
         name: '',
@@ -52,7 +54,8 @@ class EditContact extends Component {
         };
         try {
             if (isCreate) {
-               // create code
+               dataContact.id = uuid();
+               this.props.addContact(dataContact)
             } else {
                 // update code
             }
@@ -117,4 +120,4 @@ class EditContact extends Component {
     }
 }
 
-export default EditContact;
+export default connect(null,{addContact})(EditContact);

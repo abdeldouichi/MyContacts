@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import './contact.css';
+import {connect} from "react-redux";
 import axios from 'axios'
 import {Link} from "react-router-dom";
+import {deleteContact} from '../../actions/contactActions';
 
 /**
  * Icones material-ui
@@ -26,7 +28,7 @@ class Contact extends Component {
 
     onDeleteAction = async (id) => {
         try {
-            // delete code
+           this.props.deleteContact(id);
         } catch (e) {
             console.log(e)
         }
@@ -60,8 +62,9 @@ class Contact extends Component {
                             }
 
                             <Delete className="b-icon text-danger"
-                                    onClick={this.onDeleteAction.bind(this)}/>
+                                    onClick={this.onDeleteAction.bind(this, id)}/>
                             <Link className="text-dark" to={"/contact/" + id}><Edit /></Link>
+
                         </div>
                     </div>
                 </div>
@@ -97,5 +100,5 @@ Contact.propTypes = {
     data: PropTypes.object.isRequired
 };
 
-export default Contact;
+export default connect(null, {deleteContact})(Contact);
 
