@@ -19,7 +19,6 @@ class Contact extends Component {
         showContactToggle: true
     };
 
-
     showContact(myMessage) {
         this.setState({
             showContactToggle: !this.state.showContactToggle,
@@ -28,7 +27,9 @@ class Contact extends Component {
 
     onDeleteAction = async (id) => {
         try {
+
            this.props.deleteContact(id);
+
         } catch (e) {
             console.log(e)
         }
